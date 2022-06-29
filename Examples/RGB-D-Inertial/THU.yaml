@@ -1,0 +1,139 @@
+%YAML:1.0
+
+#--------------------------------------------------------------------------------------------
+# Camera Parameters. Adjust them!
+#--------------------------------------------------------------------------------------------
+
+# Camera calibration and distortion parameters (OpenCV)
+Camera.fx: 6.1145098876953125e+02
+Camera.fy: 6.1148571777343750e+02
+Camera.cx: 4.3320397949218750e+02
+Camera.cy: 2.4947302246093750e+02
+#Camera.fx: 320.0
+#Camera.fy: 320.0
+#Camera.cx: 320.0
+#Camera.cy: 240.0
+
+Camera.k1: 0.0
+Camera.k2: 0.0
+Camera.p1: 0.0
+Camera.p2: 0.0
+
+Camera.width: 848
+Camera.height: 480
+
+# Camera frames per second
+Camera.fps: 30.0
+
+# IR projector baseline times fx (aprox.)
+Camera.bf: 40.0
+
+# Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
+Camera.RGB: 1
+
+# Close/Far threshold. Baseline times.
+ThDepth: 40.0
+
+# Deptmap values factor
+DepthMapFactor: 1000.0
+
+# Transformation from camera to imu-frame(body)
+Tbc: !!opencv-matrix
+  rows: 4
+  cols: 4
+  dt: d
+  data: [ 9.9997545291464240e-01, 3.8491408362146826e-03,
+          5.8547145941429879e-03, 2.0312793552875500e-02,
+          -3.8286801217887346e-03, 9.9998653870758514e-01,
+          -3.5019440527251228e-03, 5.1032523624599000e-03,
+          -5.8681152579773141e-03, 3.4794422608202015e-03,
+          9.9997672908166857e-01, 1.1201388202607600e-02, 0., 0., 0.,
+          1. ]
+
+# IMU noise (Use those from VINS-mono)
+IMU.NoiseGyro: -6.7636385210789740e-05 # rad/s^0.5
+IMU.NoiseAcc: -6.7636385210789740e-05 # m/s^1.5
+IMU.GyroWalk: -6.7636385210789740e-05  # rad/s^1.5
+IMU.AccWalk: -6.7636385210789740e-05 # m/s^2.5
+IMU.Frequency: 500
+#IMU.AccFrequency: 600
+#IMU.GyroFrequency: 600
+
+#--------------------------------------------------------------------------------------------
+# ORB Parameters
+#--------------------------------------------------------------------------------------------
+
+# ORB Extractor: Number of features per image
+ORBextractor.nFeatures: 1000
+
+# ORB Extractor: Scale factor between levels in the scale pyramid
+ORBextractor.scaleFactor: 1.2
+
+# ORB Extractor: Number of levels in the scale pyramid
+ORBextractor.nLevels: 8
+
+# ORB Extractor: Fast threshold
+# Image is divided in a grid. At each cell FAST are extracted imposing a minimum response.
+# Firstly we impose iniThFAST. If no corners are detected we impose a lower value minThFAST
+# You can lower these values if your images have low contrast
+ORBextractor.iniThFAST: 20
+ORBextractor.minThFAST: 7
+
+#--------------------------------------------------------------------------------------------
+# Viewer Parameters
+#--------------------------------------------------------------------------------------------
+Viewer.KeyFrameSize: 0.05
+Viewer.KeyFrameLineWidth: 1
+Viewer.GraphLineWidth: 1
+Viewer.PointSize: 4
+Viewer.CameraSize: 0.08
+Viewer.CameraLineWidth: 3
+Viewer.ViewpointX: 0
+Viewer.ViewpointY: -0.7
+Viewer.ViewpointZ: -1.8
+Viewer.ViewpointF: 500
+
+Plane.AssociationDisRef: 0.05
+Plane.AssociationDisMon: 0.05
+#Plane.AssociationAngRef: 0.8 # 30 degree
+#Plane.AssociationAngMon: 0.8 # 30 degree
+#Plane.AssociationAngRef: 0.6428 # 50 degree
+#Plane.AssociationAngMon: 0.6428 # 50 degree
+#Plane.AssociationAngRef: 0.965 # 15 degree
+#Plane.AssociationAngMon: 0.965 # 15 degree
+Plane.AssociationAngRef: 0.985 # 10 degree
+Plane.AssociationAngMon: 0.985 # 10 degree
+#Plane.AssociationAngRef: 0.9962 # 5 degree
+#Plane.AssociationAngMon: 0.9962 # 5 degree
+
+
+#Plane.VerticalThreshold: 0.0523 # 87 degree
+Plane.VerticalThreshold: 0.08716 # 85 degree
+#Plane.VerticalThreshold: 0.17365 # 80 degree
+#Plane.VerticalThreshold: 0.0 # no vertical constraint
+#Plane.ParallelThreshold: 0.98481 # 10 degree
+#Plane.ParallelThreshold: 1.9962 # no parallel constraint
+Plane.ParallelThreshold: 0.9962 # 5 degree
+
+#Plane.AngleInfo: 57.3 # 1 degree
+#Plane.AngleInfo: 19.1 # 3 degree
+Plane.AngleInfo: 0.5
+Plane.DistanceInfo: 50
+Plane.MinSize: 30
+Plane.AngleThreshold: 10
+
+Plane.Chi: 100
+Plane.VPChi: 50
+
+Plane.ParallelInfo: 0.1
+Plane.VerticalInfo: 0.1
+
+Plane.DistanceThreshold: 0.04
+Plane.MFVerticalThreshold: 0.01
+MFTrackingThreshold: 0.1
+
+Surfel.distanceFar: 30.0
+Surfel.distanceNear: 0.5
+
+SavePath.Frame: "CameraTrajectory.txt"
+SavePath.Keyframe: "KeyFrameTrajectory.txt"
